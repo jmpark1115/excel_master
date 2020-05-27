@@ -49,6 +49,33 @@ class Bot(object):
     def getInstance(self):
         return self.bot
 
+
+def report(bots):
+
+
+    for i, bot in enumerate(bots):
+
+        result = sorted(bot['date'].items())
+        bot['date'] = result
+        result = []
+        for r in bot['date'] :
+            result.append(list(r))
+
+        bot['date'] = result
+        for date in bot['date']:
+            if date[1] < config['trading_min']:
+                date.append(False)
+            else:
+                date.append(True)
+        start_date = bot['date'][0][0]
+        end_date   = bot['date'][-1][0]
+        print('%d. %s' % (i, bot['botname']))
+        print('date range : {} ~ {}' .format(start_date, end_date))
+
+
+
+
+
 for name_k, name_v in botnames.items():
     # 대표 botname 에 대해 거래량을 count 함
     cnt = 0
@@ -59,7 +86,7 @@ for name_k, name_v in botnames.items():
         reader = csv.DictReader(f, delimiter=',')
 
         for r in reader :
-            print(r)
+            # print(r)
             if config['start'] <= r['create'][:10] <= config['end']:
                 pass
             else:
@@ -78,6 +105,7 @@ for name_k, name_v in botnames.items():
 for bot in bot_t:
     print(bot)
 
+report(bot_t)
 
 
 
