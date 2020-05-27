@@ -22,7 +22,7 @@ for name_k, name_v in botnames:
 
 URL = 'data/testdata1.csv'
 
-config = { 'trading_min': 100, 'start' : '2020-05-01', 'end' : '2020-05-30'}
+config = { 'trading_min': 100, 'start' : '2020-05-25', 'end' : '2020-05-27'}
 botnames = {
              'mtt-flata' : ['FLATA - MTT', 'flata - mtt'],
              'FLATA - BL' : ['FLATA - BL'],
@@ -49,13 +49,9 @@ class Bot(object):
     def getInstance(self):
         return self.bot
 
-
-
-
 for name_k, name_v in botnames.items():
     # 대표 botname 에 대해 거래량을 count 함
     cnt = 0
-    # item['botname'] = name_k
     bot = Bot(name_k)
     item = bot.getInstance()
 
@@ -64,15 +60,17 @@ for name_k, name_v in botnames.items():
 
         for r in reader :
             print(r)
+            if config['start'] <= r['create'][:10] <= config['end']:
+                pass
+            else:
+                continue
             if r['botname'] in name_v:
                 date = r['create'][:10]
                 # key 확인
-                if date in item['date']:
-                    cnt += 1
-                    item['date'][date] = cnt
+                if date in item['date'].keys():
+                    item['date'][date] += 1
                 else:
-                    cnt = 1
-                    item['date'] = {date: cnt}
+                    item['date'][date] = 1
 
         # print(item)
         bot_t.append(item)
