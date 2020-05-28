@@ -1,24 +1,6 @@
 import csv
 from datetime import datetime, timedelta
 
-'''
-
-2) db 구조
-
-tarding_min = 100 
-botname = { 'FLATA-MTT' : ['FLATA-MTT', 'flata-mtt', ...],  .... }
-
-bot_trade = { 'botname ' : flata-mtt, 'date' : { '2020-05-27': 50, '2020-05-27':30, ....  }
-bot_trade_tot = [ bot_trade, .....]
-
-3) 주요 로직
-
-for name_k, name_v in botnames:
-     if r.botname in name_v :
-          bot_trade[name_k] =   
-
-'''
-
 # URL = 'data/testdata1.csv'
 # URL = 'data/export_0527_bserver.csv'
 URL = 'data/export_ab_server_0527.csv'
@@ -31,18 +13,18 @@ config = { 'trading_min': 100,
           }
 
 botnames = {
-            # 'ua-coinsbit' : {'name': ['UA-COINSBIT']},
+            'ua-coinsbit' : {'name': ['UA-COINSBIT', 'UA-COINSBIT2']},
             'keyt-flata': {'name': ['KEYT-FLATA'], },
-            'nzc-flata': {'name': ['FLATA-NZC-2', 'FLATA - NZC', 'NZC-FLATA'], },
-            'dpd-flata': {'name': ['DPD - FLATA', 'DPD-FLATA']},
-            'loa-usdt-bithumb': {'name' : ['BITHUMB - LOA - USDT', 'LOA-BITHUMBPRO'],},
-            'loa-btc-bithumb': {'name': ['BITHUMB - LOA - BTC', 'LOA-BTC-BITHUMBPRO'],},
-            'zg-brx'  : {'name' : ['ZG - BRX']},
-            'brx-wbf' : {'name' : ['WBF - BRX']},
-            'mtt-flata': {'name': ['FLATA - MTT', 'MTT-FLATA', 'flata - mtt'], },
-            'blc-flata': {'name': ['FLATA - BLC', 'BLC-FLATA'], },
-            'bl-flata': {'name': ['FLATA - BL', 'BL-FLATA']},
-            'hug-exx' : {'name' : ['EXX - HUG']},
+            # 'dpd-flata': {'name': ['DPD - FLATA', 'DPD-FLATA']},
+            # 'loa-btc-bithumb': {'name': ['BITHUMB - LOA - BTC', 'LOA-BTC-BITHUMBPRO'],},
+            # 'loa-usdt-bithumb': {'name': ['BITHUMB - LOA - USDT', 'LOA-BITHUMBPRO'], 'start': '2020-04-20', 'end': '2020-05-30'},
+            'zg-brx': {'name': ['ZG - BRX'], 'start': '2020-05-17', 'end': '2020-05-30'},
+            'nzc-flata': {'name': ['FLATA-NZC-2', 'FLATA - NZC', 'NZC-FLATA'], 'start': '2020-05-14', 'end': '2020-05-30'},
+            'brx-wbf' : {'name' : ['WBF - BRX'], 'start': '2020-05-07', 'end': '2020-05-30'},
+            'mtt-flata': {'name': ['FLATA - MTT', 'MTT-FLATA', 'flata - mtt'], 'start': '2020-05-06', 'end': '2020-05-30'},
+            'blc-flata': {'name': ['FLATA - BLC', 'BLC-FLATA'], 'start': '2020-05-06', 'end': '2020-05-30'},
+            'bl-flata': {'name': ['FLATA - BL', 'BL-FLATA'], 'start': '2020-05-06', 'end': '2020-05-30'},
+            'hug-exx' : {'name' : ['EXX - HUG'], 'start': '2020-05-06', 'end': '2020-05-30'},
            }
 
 
@@ -124,8 +106,9 @@ for name_k, name_v in botnames.items():
             end_date   = config['end']
         for r in reader :
             # print(r)
-            if start_date <= r['create'][:10] <= end_date \
-                    and r['username'] == config['username']:
+            if r['username'] != config['username']:
+                continue
+            if start_date <= r['create'][:10] <= end_date :
                     pass
             else:
                 continue
