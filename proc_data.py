@@ -3,12 +3,12 @@ from datetime import datetime, timedelta
 
 # URL = 'data/testdata1.csv'
 # URL = 'data/export_0527_bserver.csv'
-URL = 'data/export_ab_server_0527.csv'
+URL = 'data/export_abc_server_0527.csv'
 
 config = { 'trading_min': 100,
            'start' : '2020-04-01',
            'end' : '2020-05-31',
-           'incentive' : 70/30,
+           'incentive' : 140/61,
            'username' : 'bos992'
           }
 
