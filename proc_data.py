@@ -1,4 +1,3 @@
-import sys, os
 import csv
 from datetime import datetime, timedelta
 
@@ -20,25 +19,30 @@ for name_k, name_v in botnames:
 
 '''
 
-URL = 'data/testdata1.csv'
+# URL = 'data/testdata1.csv'
+# URL = 'data/export_0527_bserver.csv'
+URL = 'data/export_ab_server_0527.csv'
 
-config = { 'trading_min': 3,
-           'start' : '2020-05-25',
-           'end' : '2020-05-27',
-           'incentive' : 70/30
+config = { 'trading_min': 100,
+           'start' : '2020-04-01',
+           'end' : '2020-05-31',
+           'incentive' : 70/30,
+           'username' : 'bos992'
           }
 
 botnames = {
-             'mtt-flata' : {'name' : ['FLATA - MTT', 'flata - mtt'], 'start': '2020-05-30', 'end': '2020-05-31'},
-             'FLATA - BL' : {'name' : ['FLATA - BL'],},
-             'FLATA - BLC' : {'name' : ['FLATA - BLC'],},
-             'DPD - FLATA' : {'name' : ['DPD - FLATA'],},
-             'KEYT-FLATA' : {'name' : ['KEYT-FLATA'],},
-             'BITHUMB - LOA - BTC': {'name': ['BITHUMB - LOA - BTC'],},
-             'BITHUMB - LOA - USDT': {'name' : ['BITHUMB - LOA - USDT'],},
-             'FLATA-NZC-2' : {'name' : ['FLATA-NZC-2'],},
-             'WBF - BRX' : {'name' : ['WBF - BRX'], },
-             'EXX - HUG' : {'name' : ['EXX - HUG'], },
+            # 'ua-coinsbit' : {'name': ['UA-COINSBIT']},
+            'keyt-flata': {'name': ['KEYT-FLATA'], },
+            'nzc-flata': {'name': ['FLATA-NZC-2', 'FLATA - NZC', 'NZC-FLATA'], },
+            'dpd-flata': {'name': ['DPD - FLATA', 'DPD-FLATA']},
+            'loa-usdt-bithumb': {'name' : ['BITHUMB - LOA - USDT', 'LOA-BITHUMBPRO'],},
+            'loa-btc-bithumb': {'name': ['BITHUMB - LOA - BTC', 'LOA-BTC-BITHUMBPRO'],},
+            'zg-brx'  : {'name' : ['ZG - BRX']},
+            'brx-wbf' : {'name' : ['WBF - BRX']},
+            'mtt-flata': {'name': ['FLATA - MTT', 'MTT-FLATA', 'flata - mtt'], },
+            'blc-flata': {'name': ['FLATA - BLC', 'BLC-FLATA'], },
+            'bl-flata': {'name': ['FLATA - BL', 'BL-FLATA']},
+            'hug-exx' : {'name' : ['EXX - HUG']},
            }
 
 
@@ -59,9 +63,7 @@ class Bot(object):
 def report(bots):
 
     tot_incentive = 0
-    current_datetime = datetime.now()
     csvfile = 'data/result_{}.csv' .format(datetime.now().strftime("%Y-%m-%d-%H-%M-%S"))
-    # filename = os.path.join('data' , csvfile)
     filename = csvfile
 
     with open(filename, 'w', encoding='cp949', newline='') as f:
@@ -70,18 +72,10 @@ def report(bots):
 
         for i, bot in enumerate(bots):
 
+            # print(bot['botname'])
+
             result = sorted(bot['date'].items())
             bot['date'] = result
-            result = []
-            for r in bot['date'] :
-                result.append(list(r))
-
-            bot['date'] = result
-            for date in bot['date']:
-                if date[1] < config['trading_min']:
-                    date.append(False)
-                else:
-                    date.append(True)
             start_date = bot['date'][0][0] if bot['date'] else None
             end_date   = bot['date'][-1][0] if bot['date'] else None
             print('%d. %s' % (i, bot['botname']))
@@ -91,15 +85,16 @@ def report(bots):
             writer.writerow(['date range : {} ~ {}'.format(start_date, end_date)])
 
             result = list()
-            cnt  = 0
+            cnt  = tot_cnt = 0
             for date in bot['date']:
-                result.append("%s(%d)" %(date[0][-2:], date[1]))
-                if date[2] == True:
+                result.append("%s(%d)" %(date[0][-5:], date[1]))
+                if date[1] >= config['trading_min']:
                     cnt += 1
+                tot_cnt += 1
             incentive = config['incentive']*cnt
             tot_incentive += incentive
             print('total operation date : ', ','.join(result))
-            print('total validity date : %d'% cnt)
+            print('total validity date : %d/%d'% (cnt, tot_cnt))
             print('incentive {:.4f} won' .format(incentive))
             writer.writerow(['total operation date : %s' % ','.join(result)])
             writer.writerow(['total validity date : %d'% cnt])
@@ -129,8 +124,9 @@ for name_k, name_v in botnames.items():
             end_date   = config['end']
         for r in reader :
             # print(r)
-            if start_date <= r['create'][:10] <= end_date:
-                pass
+            if start_date <= r['create'][:10] <= end_date \
+                    and r['username'] == config['username']:
+                    pass
             else:
                 continue
             if r['botname'] in name_v['name']:
@@ -144,10 +140,8 @@ for name_k, name_v in botnames.items():
         # print(item)
         bot_t.append(item)
 
-for bot in bot_t:
-    print(bot)
-
 report(bot_t)
+
 
 
 
