@@ -1,6 +1,14 @@
 import csv
 from datetime import datetime, timedelta
 
+'''
+사용법
+1. 사이트에서 DB 백업데이터를 다운로드
+2. 그대로 EXCEL MASTER 디렉토리 해당월로 만든후
+3. 해당 파일이름과 URL 을 일치
+4. config 에서 start ~ end 날짜, incentive 월을 수정
+5. 실행
+'''
 # URL = 'data/testdata1.csv'
 # URL = 'data/export_0527_bserver.csv'
 # URL = 'data06/export_abc_server_0527.csv'
