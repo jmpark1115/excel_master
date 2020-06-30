@@ -3,12 +3,14 @@ from datetime import datetime, timedelta
 
 # URL = 'data/testdata1.csv'
 # URL = 'data/export_0527_bserver.csv'
-URL = 'data/export_abc_server_0527.csv'
+# URL = 'data06/export_abc_server_0527.csv'
+# URL = 'data06/2020-06-30 B_01.csv'
+URL = 'data06/2020-06-16 C_01.csv'
 
-config = { 'trading_min': 100,
-           'start' : '2020-04-01',
-           'end' : '2020-05-31',
-           'incentive' : 70/31,
+config = { 'trading_min': 10,
+           'start' : '2020-06-01',
+           'end' : '2020-06-30',
+           'incentive' : 70/30,
            'username' : 'bos992'
           }
 
@@ -17,14 +19,14 @@ botnames = {
             'keyt-flata': {'name': ['KEYT-FLATA'], },
             'dpd-flata': {'name': ['DPD - FLATA', 'DPD-FLATA']},
             'loa-btc-bithumb': {'name': ['BITHUMB - LOA - BTC', 'LOA-BTC-BITHUMBPRO'],},
-            'loa-usdt-bithumb': {'name': ['BITHUMB - LOA - USDT', 'LOA-BITHUMBPRO'], 'start': '2020-04-20', 'end': '2020-05-30'},
-            'zg-brx': {'name': ['ZG - BRX'], 'start': '2020-05-17', 'end': '2020-05-31'},
-            'nzc-flata': {'name': ['FLATA-NZC-2', 'FLATA - NZC', 'NZC-FLATA'], 'start': '2020-05-14', 'end': '2020-05-31'},
-            'brx-wbf' : {'name' : ['WBF - BRX'], 'start': '2020-05-07', 'end': '2020-05-31'},
-            'mtt-flata': {'name': ['FLATA - MTT', 'MTT-FLATA', 'flata - mtt'], 'start': '2020-05-06', 'end': '2020-05-31'},
-            'blc-flata': {'name': ['FLATA - BLC', 'BLC-FLATA'], 'start': '2020-05-06', 'end': '2020-05-31'},
-            'bl-flata': {'name': ['FLATA - BL', 'BL-FLATA'], 'start': '2020-05-06', 'end': '2020-05-31'},
-            'hug-exx' : {'name' : ['EXX - HUG'], 'start': '2020-05-06', 'end': '2020-05-31'},
+            'loa-usdt-bithumb': {'name': ['BITHUMB - LOA - USDT', 'LOA-BITHUMBPRO'], },
+            'zg-brx': {'name': ['ZG - BRX'], },
+            'nzc-flata': {'name': ['FLATA-NZC-2', 'FLATA - NZC', 'NZC-FLATA'], },
+            'brx-wbf' : {'name' : ['WBF - BRX'], },
+            'mtt-flata': {'name': ['FLATA - MTT', 'MTT-FLATA', 'flata - mtt'], },
+            'blc-flata': {'name': ['FLATA - BLC', 'BLC-FLATA'],},
+            'bl-flata': {'name': ['FLATA - BL', 'BL-FLATA'],},
+            'hug-exx' : {'name' : ['EXX - HUG'], },
            }
 
 
