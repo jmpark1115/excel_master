@@ -13,16 +13,19 @@ from datetime import datetime, timedelta
 # URL = 'data/export_0527_bserver.csv'
 # URL = 'data06/export_abc_server_0527.csv'
 # URL = 'data06/2020-06-30 B_01.csv'
-URL = 'data06/2020-06-16 C_01.csv'
+# URL = 'data06/2020-06-16 C_01.csv'
+URL = 'data07/export_c.csv'
 
 config = { 'trading_min': 10,
-           'start' : '2020-06-01',
-           'end' : '2020-06-30',
-           'incentive' : 70/30,
+           'start' : '2020-07-01',
+           'end' : '2020-07-31',
+           'incentive' : 70/31,
            'username' : 'bos992'
           }
 
 botnames = {
+            'gbk-bibox'   : {'name': ['GBK-BIBOX']},
+            'sw-foblgate' : {'name': ['SW-FOBLGATE']},
             'ua-coinsbit' : {'name': ['UA-COINSBIT', 'UA-COINSBIT2']},
             'keyt-flata': {'name': ['KEYT-FLATA'], },
             'dpd-flata': {'name': ['DPD - FLATA', 'DPD-FLATA']},
@@ -34,7 +37,7 @@ botnames = {
             'mtt-flata': {'name': ['FLATA - MTT', 'MTT-FLATA', 'flata - mtt'], },
             'blc-flata': {'name': ['FLATA - BLC', 'BLC-FLATA'],},
             'bl-flata': {'name': ['FLATA - BL', 'BL-FLATA'],},
-            'hug-exx' : {'name' : ['EXX - HUG'], },
+            'hug-exx' : {'name' : ['EXX - HUG', 'HUG-EXX'], },
            }
 
 
