@@ -14,30 +14,41 @@ from datetime import datetime, timedelta
 # URL = 'data06/export_abc_server_0527.csv'
 # URL = 'data06/2020-06-30 B_01.csv'
 # URL = 'data06/2020-06-16 C_01.csv'
-URL = 'data07/export_c.csv'
+# URL = 'data07/export_c.csv'
+# URL = 'data08/2020_08_31_bserver.csv'
+# URL = 'data08/2020_08_31_cserver.csv'
+# URL = 'data09/Bserver_0928.csv'
+# URL = 'data09/Cserver_0929.csv'
+# URL = 'data10/Bserver_1031.csv'
+URL = 'data10/Cserver_1031.csv'
 
 config = { 'trading_min': 10,
-           'start' : '2020-07-01',
-           'end' : '2020-07-31',
+           'start' : '2020-10-01',
+           'end' : '2020-10-31',
            'incentive' : 70/31,
            'username' : 'bos992'
           }
 
 botnames = {
-            'gbk-bibox'   : {'name': ['GBK-BIBOX']},
-            'sw-foblgate' : {'name': ['SW-FOBLGATE']},
-            'ua-coinsbit' : {'name': ['UA-COINSBIT', 'UA-COINSBIT2']},
+            'qpbio-foblgate' : {'name':['QPBIO-FOBLGATE']},
+            'lot-foblgate'  : {'name':['LOT-FOBLGATE']},
+            'mtrax-latoken'  : {'name':['MTRAX-LATOKEN']},
+            'mccx-dcoin'  : {'name':['MCCX-DCOIN']},
+            'kful-flata'  : {'name': ['KFUL-FLATA']},
+            # 'gbk-bibox'   : {'name': ['GBK-BIBOX']},
+            # 'sw-foblgate' : {'name': ['SW-FOBLGATE']},
+            # 'ua-coinsbit' : {'name': ['UA-COINSBIT', 'UA-COINSBIT2']},
             'keyt-flata': {'name': ['KEYT-FLATA'], },
-            'dpd-flata': {'name': ['DPD - FLATA', 'DPD-FLATA']},
+            # 'dpd-flata': {'name': ['DPD - FLATA', 'DPD-FLATA']},
             'loa-btc-bithumb': {'name': ['BITHUMB - LOA - BTC', 'LOA-BTC-BITHUMBPRO'],},
             'loa-usdt-bithumb': {'name': ['BITHUMB - LOA - USDT', 'LOA-BITHUMBPRO'], },
-            'zg-brx': {'name': ['ZG - BRX'], },
-            'nzc-flata': {'name': ['FLATA-NZC-2', 'FLATA - NZC', 'NZC-FLATA'], },
-            'brx-wbf' : {'name' : ['WBF - BRX'], },
+            # 'zg-brx': {'name': ['ZG - BRX'], },
+            # 'nzc-flata': {'name': ['FLATA-NZC-2', 'FLATA - NZC', 'NZC-FLATA'], },
+            # 'brx-wbf' : {'name' : ['WBF - BRX'], },
             'mtt-flata': {'name': ['FLATA - MTT', 'MTT-FLATA', 'flata - mtt'], },
             'blc-flata': {'name': ['FLATA - BLC', 'BLC-FLATA'],},
             'bl-flata': {'name': ['FLATA - BL', 'BL-FLATA'],},
-            'hug-exx' : {'name' : ['EXX - HUG', 'HUG-EXX'], },
+            # 'hug-exx' : {'name' : ['EXX - HUG', 'HUG-EXX'], },
            }
 
 
