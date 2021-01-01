@@ -9,27 +9,34 @@ from datetime import datetime, timedelta
 4. config 에서 start ~ end 날짜, incentive 월을 수정
 5. 실행
 '''
-# URL = 'data/testdata1.csv'
-# URL = 'data/export_0527_bserver.csv'
-# URL = 'data06/export_abc_server_0527.csv'
-# URL = 'data06/2020-06-30 B_01.csv'
-# URL = 'data06/2020-06-16 C_01.csv'
-# URL = 'data07/export_c.csv'
-# URL = 'data08/2020_08_31_bserver.csv'
-# URL = 'data08/2020_08_31_cserver.csv'
-# URL = 'data09/Bserver_0928.csv'
-# URL = 'data09/Cserver_0929.csv'
-# URL = 'data10/Bserver_1031.csv'
-URL = 'data10/Cserver_1031.csv'
+'''
+DB 만드는 법
+use obs_1230;
+show tables;
+select count(*) from sitetrading_trans;
+select * from sitetrading_trans into outfile "C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\trans_bserver03.csv" fields terminated by ',' lines terminated by '\n';
+header name 이 없으므로 명기함.
+30일 말일까지 있는지 확인
+'''
+
+# URL = 'data12/trans_cserver.csv'
+URL = 'data12/trans_bserver03.csv'
 
 config = { 'trading_min': 10,
-           'start' : '2020-10-01',
-           'end' : '2020-10-31',
+           'start' : '2020-12-01',
+           'end' : '2020-12-31',
            'incentive' : 70/31,
            'username' : 'bos992'
           }
 
 botnames = {
+            'qpbio-flata'    : {'name':['FLATA-QPBIO']},
+            'gdt-foblgate'   : {'name':['GDT-FOBLGATE']},
+            'kvdc-foblgate'  : {'name':['KVDC-FOBLGATE']},
+
+            'hgn-probit'     : {'name':['HGN-PROBIT', 'HGN-PROBIT2']},
+            'hgn-flata'      : {'name':['HGN-FLATA']},
+            'csp-foblgate'   : {'name':['CSP-FOBLGATE']},
             'qpbio-foblgate' : {'name':['QPBIO-FOBLGATE']},
             'lot-foblgate'  : {'name':['LOT-FOBLGATE']},
             'mtrax-latoken'  : {'name':['MTRAX-LATOKEN']},
@@ -132,7 +139,9 @@ for name_k, name_v in botnames.items():
             # print(r)
             if r['username'] != config['username']:
                 continue
-            if start_date <= r['create'][:10] <= end_date :
+            #jmpark
+            # if start_date <= r['create'][:10] <= end_date :
+            if start_date <= r['create'] <= end_date :
                     pass
             else:
                 continue
